@@ -16,6 +16,6 @@ WORKDIR /app
 
 EXPOSE 8080
 
-COPY --from=build /app/target/ms-aion-jpa-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build /app/target/api-ambiente-escolar-sql-0.0.1-SNAPSHOT.jar app.jar
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
