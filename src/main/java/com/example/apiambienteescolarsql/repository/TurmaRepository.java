@@ -1,4 +1,7 @@
 package com.example.apiambienteescolarsql.repository;
 
-public interface TurmaRepository {
+import com.example.apiambienteescolarsql.model.Turma;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface TurmaRepository extends JpaRepository<Turma, Long> {
 }
