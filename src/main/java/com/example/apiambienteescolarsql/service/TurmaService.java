@@ -1,11 +1,10 @@
 package com.example.apiambienteescolarsql.service;
 
 import com.example.apiambienteescolarsql.dto.TurmaResponse;
-import com.example.apiambienteescolarsql.repository.AlunoRepository;
 import com.example.apiambienteescolarsql.repository.TurmaRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import tools.jackson.databind.ObjectMapper;
 
 import java.util.List;
 

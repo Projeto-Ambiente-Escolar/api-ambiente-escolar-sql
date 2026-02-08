@@ -5,12 +5,12 @@ import com.example.apiambienteescolarsql.dto.NotasRequest;
 import com.example.apiambienteescolarsql.exception.DatabaseInsertException;
 import com.example.apiambienteescolarsql.model.Notas;
 import com.example.apiambienteescolarsql.repository.NotasRepository;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
-import tools.jackson.core.type.TypeReference;
-import tools.jackson.databind.ObjectMapper;
 
 import java.util.List;
 
