@@ -13,9 +13,11 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
     @Query("SELECT a FROM Aluno a WHERE a.matricula = :matricula")
     Aluno findByMatricula(@Param("matricula") String matricula);
 
-    @Query("SELECT a FROM Aluno a WHERE a.senha = :senha AND a.email = :email")
+    @Query("SELECT a FROM Aluno a WHERE a.senha = :senha AND a.email = :email AND a.status = '1' ")
     Aluno findByEmailAndSenha(@Param("email") String email, @Param("senha") String senha);
 
     @Query("SELECT a FROM Aluno a WHERE a.status = :status")
     List<Aluno> findByStatus(@Param("status") String status);
+
+    List<Aluno> findAlunosByTurma(Long turma);
 }

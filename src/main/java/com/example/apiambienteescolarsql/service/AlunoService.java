@@ -37,6 +37,13 @@ public class AlunoService {
         return objectMapper.convertValue(aluno, AlunoResponse.class);
     }
 
+    public List<AlunoResponse> listarAlunosPorTurma(Long idTurma) {
+        return alunoRepository.findAlunosByTurma(idTurma)
+                .stream()
+                .map(aluno -> objectMapper.convertValue(aluno, AlunoResponse.class))
+                .toList();
+    }
+
     //get by status
     public List<AlunoResponse> findByStatus(String status) {
         List<Aluno> alunos = alunoRepository.findByStatus(status);

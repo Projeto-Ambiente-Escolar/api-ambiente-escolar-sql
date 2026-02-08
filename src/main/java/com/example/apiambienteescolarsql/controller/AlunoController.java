@@ -24,6 +24,11 @@ public class AlunoController {
         return new ResponseEntity<>(responseAlunoDTO, HttpStatus.OK);
     }
 
+    @GetMapping("/alunosPorTurma/{idTurma}")
+    public ResponseEntity<List<AlunoResponse>> listarAlunosPorTurma(@PathVariable Long idTurma) {
+        return ResponseEntity.ok(alunoService.listarAlunosPorTurma(idTurma));
+    }
+
     @PostMapping("/login")
     public ResponseEntity<AlunoResponse> loginAlun(@RequestBody LoginRequest loginRequest) {
         LoginRequest requestAlunoDTO = new LoginRequest(loginRequest.getEmail(), loginRequest.getSenha());
