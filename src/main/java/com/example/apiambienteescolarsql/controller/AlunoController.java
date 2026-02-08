@@ -31,13 +31,13 @@ public class AlunoController {
         return new ResponseEntity<>(responseAlunoDTO, HttpStatus.OK);
     }
 
-    @GetMapping("/{status}")
+    @GetMapping("status/{status}")
     public ResponseEntity<List<AlunoResponse>> findByStatus(@PathVariable String status) {
         List<AlunoResponse> responseAlunosDTO = alunoService.findByStatus(status);
         return new ResponseEntity<>(responseAlunosDTO, HttpStatus.OK);
     }
 
-    @GetMapping("/{matricula}")
+    @GetMapping("matricula/{matricula}")
     public ResponseEntity<AlunoResponse> findByMatricula(@PathVariable String matricula) {
         AlunoResponse responseAlunosDTO = alunoService.findByMatricula(matricula);
         return new ResponseEntity<>(responseAlunosDTO, HttpStatus.OK);
