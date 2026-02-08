@@ -18,6 +18,9 @@ public class AlunoRequest {
     private String nome;
 
     @NotNull
+    private String matricula;
+
+    @NotNull
     @Size(max = 50, message = "O e-mail deve ter no máximo 50 caracteres")
     private String email;
 

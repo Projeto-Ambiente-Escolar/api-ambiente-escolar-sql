@@ -8,7 +8,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AlunoResponse {
-    private String id;
+    private Long id;
+
+    private Long turma;
+
+    private String matricula;
 
     private String nome;
 
