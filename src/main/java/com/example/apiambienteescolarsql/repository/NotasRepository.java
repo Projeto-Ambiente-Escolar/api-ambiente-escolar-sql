@@ -13,6 +13,12 @@ public interface NotasRepository extends JpaRepository<Notas, Long> {
     @Query("SELECT a FROM Notas a WHERE a.aluno = :aluno")
     Notas findByAluno(@Param("aluno") Long aluno);
 
+    @Query(
+            value = "SELECT ROUND(AVG(a.n_media), 2) FROM notas a",
+            nativeQuery = true
+    )
+    Double findMedia();
+
     @Query("SELECT a FROM Notas a WHERE a.aluno = :aluno AND a.professor = :professor")
     List<Notas> findByAlunoAndProfessor(@Param("aluno") Long aluno, @Param("professor") Long professor);
 }

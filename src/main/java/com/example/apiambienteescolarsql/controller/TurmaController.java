@@ -3,7 +3,9 @@ package com.example.apiambienteescolarsql.controller;
 import com.example.apiambienteescolarsql.dto.TurmaResponse;
 import com.example.apiambienteescolarsql.service.TurmaService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,4 +19,10 @@ public class TurmaController {
     private final TurmaService turmaService;
 
     private ResponseEntity<List<TurmaResponse>> findAll(){return ResponseEntity.ok(turmaService.findAll());}
+
+    @GetMapping("/media")
+    public ResponseEntity<Double> findMedia() {
+        Double media = turmaService.findMediaTurma();
+        return new ResponseEntity<>(media, HttpStatus.OK);
+    }
 }

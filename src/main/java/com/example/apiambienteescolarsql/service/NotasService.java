@@ -53,4 +53,8 @@ public class NotasService {
                 }
         );
     }
+
+    public Double findMedia() {
+        return notasRepository.findMedia();
+    }
 }

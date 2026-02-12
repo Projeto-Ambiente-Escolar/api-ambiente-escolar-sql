@@ -30,7 +30,7 @@ public class AlunoController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<AlunoResponse> loginAlun(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<AlunoResponse> loginAluno(@RequestBody LoginRequest loginRequest) {
         LoginRequest requestAlunoDTO = new LoginRequest(loginRequest.getEmail(), loginRequest.getSenha());
         AlunoResponse responseAlunoDTO = alunoService.findByEmailAndSenha(requestAlunoDTO);
         return new ResponseEntity<>(responseAlunoDTO, HttpStatus.OK);

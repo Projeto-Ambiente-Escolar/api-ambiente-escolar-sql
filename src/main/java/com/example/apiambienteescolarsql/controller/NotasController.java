@@ -31,6 +31,12 @@ public class NotasController {
         return new ResponseEntity<>(responseNotasDTO, HttpStatus.OK);
     }
 
+    @GetMapping("/media")
+    public ResponseEntity<Double> findMedia() {
+        Double media = notasService.findMedia();
+        return new ResponseEntity<>(media, HttpStatus.OK);
+    }
+
     @GetMapping("/{aluno}/{professor}")
     public ResponseEntity<List<NotasResponse>> findByAlunoAndProfessor(@PathVariable Long aluno, @PathVariable Long professor ) {
         List<NotasResponse> responseAlunosDTO = notasService.findByAlunoAndProfessor(aluno, professor);
