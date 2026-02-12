@@ -18,6 +18,7 @@ public class TurmaController {
 
     private final TurmaService turmaService;
 
+    @GetMapping("/listar")
     private ResponseEntity<List<TurmaResponse>> findAll(){return ResponseEntity.ok(turmaService.findAll());}
 
     @GetMapping("/media")
