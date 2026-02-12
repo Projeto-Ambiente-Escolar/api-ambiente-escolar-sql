@@ -91,12 +91,22 @@ public class AlunoService {
     }
 
     @Transactional
-    public AlunoResponse mudarStatusAluno (Long id, String status) {
+    public AlunoResponse mudarStatusAluno(Long id, String status) {
+
         Aluno aluno = alunoRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Aluno com a matrícula " + id + " não foi encontrado."));
-        aluno.setStatus(status);
 
-        return objectMapper.convertValue(alunoRepository.save(aluno), AlunoResponse.class);
+        if("0".equals(status)){
+            alunoRepository.delete(aluno);
+            return null;
+        }
+
+        aluno.setStatus(status);
+        return objectMapper.convertValue(
+                alunoRepository.save(aluno),
+                AlunoResponse.class
+        );
     }
+
 
 }
