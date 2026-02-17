@@ -9,19 +9,14 @@ import org.antlr.v4.runtime.misc.NotNull;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class NotasRequest {
-    @NotNull
-    private Long aluno;
-
-    @Size(max = 100, message = "A observação deve ter no máximo 100 caracteres")
-    private String observacao;
-
+public class RecadoRequest {
     @NotNull
     private Long professor;
 
     @NotNull
-    private Long nota1;
+    private Long aluno;
 
     @NotNull
-    private Long nota2;
+    @Size(max = 500, message = "A mensagem deve ter no máximo 500 caracteres")
+    private String mensagem;
 }

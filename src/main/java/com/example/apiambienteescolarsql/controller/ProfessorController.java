@@ -8,11 +8,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @AllArgsConstructor
 @RestController
 @RequestMapping("/professor")
 public class ProfessorController {
     private final ProfessorService professorService;
+
+    @GetMapping("/listar")
+    private ResponseEntity<List<ProfessorResponse>> findAll(){return ResponseEntity.ok(professorService.findAll());}
+
+    @GetMapping("/listarDisciplinas")
+    private ResponseEntity<List<String>> findDisciplinas(){return ResponseEntity.ok(professorService.findAllDisciplina());}
 
     @PostMapping("/login")
     public ResponseEntity<ProfessorResponse> loginProfessor(@RequestBody LoginRequest loginRequest) {
