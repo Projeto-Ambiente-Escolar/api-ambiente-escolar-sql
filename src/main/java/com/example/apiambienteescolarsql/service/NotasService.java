@@ -5,6 +5,7 @@ import com.example.apiambienteescolarsql.dto.NotasRequest;
 import com.example.apiambienteescolarsql.exception.DatabaseInsertException;
 import com.example.apiambienteescolarsql.model.Notas;
 import com.example.apiambienteescolarsql.repository.NotasRepository;
+import com.example.apiambienteescolarsql.repository.RankingAlunoProjection;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
@@ -56,5 +57,13 @@ public class NotasService {
 
     public Double findMedia() {
         return notasRepository.findMedia();
+    }
+
+    public List<RankingAlunoProjection> findTop5Alunos(Long professorId) {
+        return notasRepository.findTop5AlunosByProfessor(professorId);
+    }
+
+    public List<RankingAlunoProjection> findPiores5Alunos(Long professorId) {
+        return notasRepository.findPiores5AlunosByProfessor(professorId);
     }
 }

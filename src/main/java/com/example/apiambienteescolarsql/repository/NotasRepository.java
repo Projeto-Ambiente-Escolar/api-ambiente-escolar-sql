@@ -21,4 +21,42 @@ public interface NotasRepository extends JpaRepository<Notas, Long> {
 
     @Query("SELECT a FROM Notas a WHERE a.aluno = :aluno AND a.professor = :professor")
     List<Notas> findByAlunoAndProfessor(@Param("aluno") Long aluno, @Param("professor") Long professor);
+
+    @Query(value = """
+        SELECT 
+            a.cFoto       AS cFoto,
+            a.cNmAluno    AS cNmAluno,
+            t.nCdTurma    AS nCdTurma,
+            a.cMatricula  AS cMatricula,
+            a.cEmail      AS cEmail,
+            n.nMedia      AS nMedia
+        FROM Turma t
+        INNER JOIN Aluno a ON t.nCdTurma = a.nCdTurma
+        INNER JOIN Notas n ON a.nCdAluno = n.nCdAluno
+        INNER JOIN Professor p ON p.nCdProfessor = n.nCdProfessor
+        WHERE p.nCdProfessor = :professor
+        ORDER BY n.nMedia DESC
+        LIMIT 5
+        """,
+            nativeQuery = true)
+    List<RankingAlunoProjection> findTop5AlunosByProfessor(@Param("professor") Long professor);
+
+    @Query(value = """
+        SELECT 
+            a.cFoto       AS cFoto,
+            a.cNmAluno    AS cNmAluno,
+            t.nCdTurma    AS nCdTurma,
+            a.cMatricula  AS cMatricula,
+            a.cEmail      AS cEmail,
+            n.nMedia      AS nMedia
+        FROM Turma t
+        INNER JOIN Aluno a ON t.nCdTurma = a.nCdTurma
+        INNER JOIN Notas n ON a.nCdAluno = n.nCdAluno
+        INNER JOIN Professor p ON p.nCdProfessor = n.nCdProfessor
+        WHERE p.nCdProfessor = :professor
+        ORDER BY n.nMedia
+        LIMIT 5
+        """,
+            nativeQuery = true)
+    List<RankingAlunoProjection> findPiores5AlunosByProfessor(@Param("professor") Long professor);
 }

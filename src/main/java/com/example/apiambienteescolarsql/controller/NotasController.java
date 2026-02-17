@@ -1,8 +1,8 @@
 package com.example.apiambienteescolarsql.controller;
 
-import com.example.apiambienteescolarsql.dto.AlunoResponse;
 import com.example.apiambienteescolarsql.dto.NotasRequest;
 import com.example.apiambienteescolarsql.dto.NotasResponse;
+import com.example.apiambienteescolarsql.repository.RankingAlunoProjection;
 import com.example.apiambienteescolarsql.service.NotasService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -41,5 +41,17 @@ public class NotasController {
     public ResponseEntity<List<NotasResponse>> findByAlunoAndProfessor(@PathVariable Long aluno, @PathVariable Long professor ) {
         List<NotasResponse> responseAlunosDTO = notasService.findByAlunoAndProfessor(aluno, professor);
         return new ResponseEntity<>(responseAlunosDTO, HttpStatus.OK);
+    }
+
+    @GetMapping("/buscarTop5Alunos/{professor}")
+    public ResponseEntity<List<RankingAlunoProjection>> findTop5Alunos(@PathVariable Long professor) {
+        List<RankingAlunoProjection> rankingAlunoProjection = notasService.findTop5Alunos(professor);
+        return new ResponseEntity<>(rankingAlunoProjection, HttpStatus.OK);
+    }
+
+    @GetMapping("/buscarPiores5Alunos/{professor}")
+    public ResponseEntity<List<RankingAlunoProjection>> findPiores5Alunos(@PathVariable Long professor) {
+        List<RankingAlunoProjection> rankingAlunoProjection = notasService.findPiores5Alunos(professor);
+        return new ResponseEntity<>(rankingAlunoProjection, HttpStatus.OK);
     }
 }
