@@ -1,5 +1,6 @@
 package com.example.apiambienteescolarsql.repository;
 
+import com.example.apiambienteescolarsql.dto.TabelaNotaResponse;
 import com.example.apiambienteescolarsql.model.Notas;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -60,4 +61,18 @@ public interface NotasRepository extends JpaRepository<Notas, Long> {
         """,
             nativeQuery = true)
     List<RankingAlunoProjection> findAlunosRecuperacaoByProfessor(@Param("professor") Long professor);
+
+    @Query(value = """
+    SELECT 
+        Notas.nNota1       AS nota1,
+        Notas.nNota2       AS nota2,
+        Notas.nMedia       AS media,
+        Notas.cObservacao  AS observacao,
+        Professor.cDisciplina AS disciplina
+    FROM Notas
+    INNER JOIN Professor 
+        ON Professor.nCdProfessor = Notas.nCdProfessor
+    WHERE Notas.nCdAluno = :nCdAluno
+    """, nativeQuery = true)
+    List<TabelaNotaResponse> findNotasByAluno(@Param("nCdAluno") Long nCdAluno);
 }

@@ -2,6 +2,7 @@ package com.example.apiambienteescolarsql.controller;
 
 import com.example.apiambienteescolarsql.dto.NotasRequest;
 import com.example.apiambienteescolarsql.dto.NotasResponse;
+import com.example.apiambienteescolarsql.dto.TabelaNotaResponse;
 import com.example.apiambienteescolarsql.repository.RankingAlunoProjection;
 import com.example.apiambienteescolarsql.service.NotasService;
 import jakarta.validation.Valid;
@@ -35,6 +36,10 @@ public class NotasController {
     public ResponseEntity<Double> findMedia() {
         Double media = notasService.findMedia();
         return new ResponseEntity<>(media, HttpStatus.OK);
+    }
+    @GetMapping("/tabelaNotas/{idAluno}")
+    public ResponseEntity<List<TabelaNotaResponse>> listarNotas(@PathVariable Long idAluno) {
+        return ResponseEntity.ok(notasService.buscarTabelaNotas(idAluno));
     }
 
     @GetMapping("/{aluno}/{professor}")

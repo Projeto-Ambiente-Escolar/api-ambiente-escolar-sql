@@ -38,6 +38,10 @@ public class NotasService {
             throw dataAccessException;
         }
     }
+    // tabela de notas do aluno
+    public List<TabelaNotaResponse> buscarTabelaNotas(Long idAluno) {
+        return notasRepository.findNotasByAluno(idAluno);
+    }
 
     // get nota by id aluno
     public NotasResponse findById(Long id) {
