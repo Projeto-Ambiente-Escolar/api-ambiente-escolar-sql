@@ -59,8 +59,8 @@ public class NotasService {
         return notasRepository.findMedia();
     }
 
-    public List<RankingAlunoProjection> findTop5Alunos(Long professorId) {
-        return notasRepository.findTop5AlunosByProfessor(professorId);
+    public List<RankingAlunoProjection> findTop3Alunos(Long professorId) {
+        return notasRepository.findTop3AlunosByProfessor(professorId);
     }
 
     public List<RankingAlunoProjection> findAlunosRecuperacao(Long professorId) {

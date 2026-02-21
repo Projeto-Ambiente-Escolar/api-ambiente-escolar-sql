@@ -36,10 +36,10 @@ public interface NotasRepository extends JpaRepository<Notas, Long> {
         INNER JOIN Professor p ON p.nCdProfessor = n.nCdProfessor
         WHERE p.nCdProfessor = :professor
         ORDER BY n.nMedia DESC
-        LIMIT 5
+        LIMIT 3
         """,
             nativeQuery = true)
-    List<RankingAlunoProjection> findTop5AlunosByProfessor(@Param("professor") Long professor);
+    List<RankingAlunoProjection> findTop3AlunosByProfessor(@Param("professor") Long professor);
 
     @Query(value = """
 
