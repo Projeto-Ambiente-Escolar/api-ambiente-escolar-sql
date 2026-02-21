@@ -20,4 +20,12 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
     List<Aluno> findByStatus(@Param("status") String status);
 
     List<Aluno> findAlunosByTurma(Long turma);
+
+    @Query(value = "SELECT Aluno.*" +
+                   "  FROM Aluno" +
+                   "       LEFT JOIN Notas ON Notas.nCdAluno     = Aluno.nCdAluno" +
+                   "                      AND Notas.nCdProfessor = :idProfessor" +
+                   " ORDER BY Aluno.nCdAluno",
+            nativeQuery = true)
+    List<Aluno> findAlunosSemNota(@Param("idProfessor") Long idProfessor);
 }

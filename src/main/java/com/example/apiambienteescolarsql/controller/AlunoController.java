@@ -24,6 +24,11 @@ public class AlunoController {
         return new ResponseEntity<>(responseAlunoDTO, HttpStatus.OK);
     }
 
+    @GetMapping("alunosSemNota/{idProfessor}")
+    public ResponseEntity<List<AlunoResponse>> listarAlunosSemNota(@PathVariable Long idProfessor) {
+        return ResponseEntity.ok(alunoService.listarAlunosSemNota(idProfessor));
+    }
+
     @GetMapping("/alunosPorTurma/{idTurma}")
     public ResponseEntity<List<AlunoResponse>> listarAlunosPorTurma(@PathVariable Long idTurma) {
         return ResponseEntity.ok(alunoService.listarAlunosPorTurma(idTurma));

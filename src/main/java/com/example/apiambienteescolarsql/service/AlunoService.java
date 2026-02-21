@@ -59,6 +59,14 @@ public class AlunoService {
         return objectMapper.convertValue(aluno, AlunoResponse.class);
     }
 
+    //get alunos que ainda não tem nota
+    public List<AlunoResponse> listarAlunosSemNota(Long idProfessor) {
+        return  alunoRepository.findAlunosSemNota(idProfessor)
+                .stream()
+                .map(aluno -> objectMapper.convertValue(aluno, AlunoResponse.class))
+                .toList();
+    }
+
     //get all
     public List<AlunoResponse> listarAlunos() {
         return alunoRepository.findAll()
