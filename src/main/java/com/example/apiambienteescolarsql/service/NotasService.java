@@ -63,7 +63,7 @@ public class NotasService {
         return notasRepository.findTop5AlunosByProfessor(professorId);
     }
 
-    public List<RankingAlunoProjection> findPiores5Alunos(Long professorId) {
-        return notasRepository.findPiores5AlunosByProfessor(professorId);
+    public List<RankingAlunoProjection> findAlunosRecuperacao(Long professorId) {
+        return notasRepository.findAlunosRecuperacaoByProfessor(professorId);
     }
 }

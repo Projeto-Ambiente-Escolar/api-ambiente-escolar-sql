@@ -49,9 +49,9 @@ public class NotasController {
         return new ResponseEntity<>(rankingAlunoProjection, HttpStatus.OK);
     }
 
-    @GetMapping("/buscarPiores5Alunos/{professor}")
-    public ResponseEntity<List<RankingAlunoProjection>> findPiores5Alunos(@PathVariable Long professor) {
-        List<RankingAlunoProjection> rankingAlunoProjection = notasService.findPiores5Alunos(professor);
+    @GetMapping("/buscarAlunosEmRecuperacao/{professor}")
+    public ResponseEntity<List<RankingAlunoProjection>> findAlunosRecuperacao(@PathVariable Long professor) {
+        List<RankingAlunoProjection> rankingAlunoProjection = notasService.findAlunosRecuperacao(professor);
         return new ResponseEntity<>(rankingAlunoProjection, HttpStatus.OK);
     }
 }

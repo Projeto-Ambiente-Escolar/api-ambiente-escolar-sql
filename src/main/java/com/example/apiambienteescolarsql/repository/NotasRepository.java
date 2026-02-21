@@ -42,7 +42,8 @@ public interface NotasRepository extends JpaRepository<Notas, Long> {
     List<RankingAlunoProjection> findTop5AlunosByProfessor(@Param("professor") Long professor);
 
     @Query(value = """
-        SELECT 
+
+            SELECT\s
             a.cFoto       AS cFoto,
             a.cNmAluno    AS cNmAluno,
             t.nCdTurma    AS nCdTurma,
@@ -54,9 +55,9 @@ public interface NotasRepository extends JpaRepository<Notas, Long> {
         INNER JOIN Notas n ON a.nCdAluno = n.nCdAluno
         INNER JOIN Professor p ON p.nCdProfessor = n.nCdProfessor
         WHERE p.nCdProfessor = :professor
-        ORDER BY n.nMedia
-        LIMIT 5
+          AND n.nMedia < 7
+        ORDER BY n.nMedia ASC;
         """,
             nativeQuery = true)
-    List<RankingAlunoProjection> findPiores5AlunosByProfessor(@Param("professor") Long professor);
+    List<RankingAlunoProjection> findAlunosRecuperacaoByProfessor(@Param("professor") Long professor);
 }
