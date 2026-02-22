@@ -60,8 +60,8 @@ public class AlunoService {
     }
 
     //get alunos que ainda não tem nota
-    public List<AlunoResponse> listarAlunosSemNota(Long idProfessor) {
-        return  alunoRepository.findAlunosSemNota(idProfessor)
+    public List<AlunoResponse> listarAlunosSemNota(Long idProfessor, Long idTurma) {
+        return  alunoRepository.findAlunosSemNota(idProfessor, idTurma)
                 .stream()
                 .map(aluno -> objectMapper.convertValue(aluno, AlunoResponse.class))
                 .toList();
