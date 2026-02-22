@@ -24,4 +24,7 @@ public class NotasRequest {
 
     @NotNull
     private Long nota2;
+
+    @NotNull
+    private Long media;
 }
