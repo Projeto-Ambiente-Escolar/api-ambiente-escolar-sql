@@ -18,6 +18,9 @@ import java.util.List;
 public class AlunoController {
     private final AlunoService alunoService;
 
+    @GetMapping("/OnAPI")
+    public ResponseEntity<String> OnAPI(){return ResponseEntity.ok("OnAPI");}
+
     @GetMapping("/{id}")
     public ResponseEntity<AlunoResponse> findById(@PathVariable Long id) {
         AlunoResponse responseAlunoDTO = alunoService.findById(id);
