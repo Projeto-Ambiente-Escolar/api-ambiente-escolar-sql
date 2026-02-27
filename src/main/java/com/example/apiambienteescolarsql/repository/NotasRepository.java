@@ -15,7 +15,7 @@ public interface NotasRepository extends JpaRepository<Notas, Long> {
     Notas findByAluno(@Param("aluno") Long aluno);
 
     @Query(
-            value = "SELECT ROUND(AVG(a.n_media), 2) FROM notas a",
+            value = "SELECT ROUND(AVG(a.nMedia), 2) FROM notas a",
             nativeQuery = true
     )
     Double findMedia();
