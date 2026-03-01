@@ -73,4 +73,9 @@ public class AlunoController {
         AlunoResponse responseAlunoDTO = alunoService.mudarStatusAluno(id, status);
         return ResponseEntity.ok(responseAlunoDTO);
     }
+    @PutMapping("/vincularTurma/{idAluno}/{idTurma}")
+    public ResponseEntity<AlunoResponse> vincularTurma(@PathVariable Long idAluno, @PathVariable Long idTurma){
+        AlunoResponse alunoResponse = alunoService.vincularTurma(idAluno, idTurma);
+        return ResponseEntity.ok(alunoResponse);
+    }
 }

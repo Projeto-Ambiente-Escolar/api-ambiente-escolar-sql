@@ -116,5 +116,16 @@ public class AlunoService {
         );
     }
 
+    @Transactional
+    public AlunoResponse vincularTurma(Long idAluno, Long idTurma)
+    {
+        Aluno aluno = alunoRepository.findById(idAluno).orElseThrow(() -> new EntityNotFoundException("Aluno com a matrícula " + idAluno + " não foi encontrado."));
+        aluno.setTurma(idTurma);
+        return objectMapper.convertValue(
+                alunoRepository.save(aluno),
+                AlunoResponse.class
+        );
+    }
+
 
 }
