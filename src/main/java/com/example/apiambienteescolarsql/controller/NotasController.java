@@ -2,8 +2,8 @@ package com.example.apiambienteescolarsql.controller;
 
 import com.example.apiambienteescolarsql.dto.NotasRequest;
 import com.example.apiambienteescolarsql.dto.NotasResponse;
-import com.example.apiambienteescolarsql.dto.TabelaNotaResponse;
-import com.example.apiambienteescolarsql.repository.RankingAlunoProjection;
+import com.example.apiambienteescolarsql.dto.projection.TabelaNotaResponse;
+import com.example.apiambienteescolarsql.dto.projection.RankingAlunoProjection;
 import com.example.apiambienteescolarsql.service.NotasService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;

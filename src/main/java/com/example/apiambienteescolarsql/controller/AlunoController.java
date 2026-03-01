@@ -3,6 +3,7 @@ package com.example.apiambienteescolarsql.controller;
 import com.example.apiambienteescolarsql.dto.AlunoRequest;
 import com.example.apiambienteescolarsql.dto.AlunoResponse;
 import com.example.apiambienteescolarsql.dto.LoginRequest;
+import com.example.apiambienteescolarsql.dto.projection.MateriaStatusProjection;
 import com.example.apiambienteescolarsql.service.AlunoService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -77,5 +78,17 @@ public class AlunoController {
     public ResponseEntity<AlunoResponse> vincularTurma(@PathVariable Long idAluno, @PathVariable Long idTurma){
         AlunoResponse alunoResponse = alunoService.vincularTurma(idAluno, idTurma);
         return ResponseEntity.ok(alunoResponse);
+    }
+
+    @GetMapping("/listarAlunosComStatusDaMateria/{professor}/{serie}")
+    public ResponseEntity<List<MateriaStatusProjection>> listarAlunosComStatusDaMateria (@PathVariable Long professor, @PathVariable Long serie) {
+        List<MateriaStatusProjection> materiaStatusProjections = alunoService.listarAlunosComStatusDaMateria(professor, serie);
+        return new ResponseEntity<>(materiaStatusProjections, HttpStatus.OK);
+    }
+
+    @GetMapping("/listarAlunoComStatusDaMateria/{professor}/{serie}/{aluno}")
+    public ResponseEntity<MateriaStatusProjection> listarAlunoComStatusDaMateria (@PathVariable Long professor, @PathVariable Long serie, @PathVariable Long aluno) {
+        MateriaStatusProjection materiaStatusProjections = alunoService.listarAlunoComStatusDaMateria(professor, serie, aluno);
+        return new ResponseEntity<>(materiaStatusProjections, HttpStatus.OK);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.apiambienteescolarsql.repository;
 
+import com.example.apiambienteescolarsql.dto.projection.MateriaStatusProjection;
 import com.example.apiambienteescolarsql.model.Aluno;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -30,4 +31,52 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
                    " ORDER BY Aluno.nCdAluno",
             nativeQuery = true)
     List<Aluno> findAlunosSemNota(@Param("idProfessor") Long idProfessor, @Param("idTurma") Long idTurma);
+
+    @Query(value = """
+    SELECT 
+        a.nCdAluno      AS nCdAluno,
+        a.cNmAluno      AS cNmAluno,
+        a.cFoto         AS cFoto,
+        a.cMatricula    AS cMatricula,
+        CONCAT(t.iSerie, ' ', t.cNmTurma) AS serie,
+        CASE 
+            WHEN n.nMedia IS NULL THEN 'Em espera'
+            WHEN n.nMedia >= 7 THEN 'Aprovado'
+            ELSE 'Reprovado'
+        END AS status
+    FROM Turma t
+    JOIN Aluno a ON t.nCdTurma = a.nCdTurma
+    JOIN Notas n ON a.nCdAluno = n.nCdAluno
+    WHERE n.nCdProfessor = :professorId
+      AND t.iSerie = :serie
+    """, nativeQuery = true)
+    List<MateriaStatusProjection> buscarAlunosComStatusDaMateria(
+            @Param("professorId") Long professorId,
+            @Param("serie") Long serie
+    );
+
+    @Query(value = """
+    SELECT 
+        a.nCdAluno      AS nCdAluno,
+        a.cNmAluno      AS cNmAluno,
+        a.cFoto         AS cFoto,
+        a.cMatricula    AS cMatricula,
+        CONCAT(t.iSerie, ' ', t.cNmTurma) AS serie,
+        CASE 
+            WHEN n.nMedia IS NULL THEN 'Em espera'
+            WHEN n.nMedia >= 7 THEN 'Aprovado'
+            ELSE 'Reprovado'
+        END AS status
+    FROM Turma t
+    JOIN Aluno a ON t.nCdTurma = a.nCdTurma
+    JOIN Notas n ON a.nCdAluno = n.nCdAluno
+    WHERE n.nCdProfessor = :professorId
+      AND a.nCdAluno = :alunoId
+      AND t.iSerie = :serie
+    """, nativeQuery = true)
+    MateriaStatusProjection buscarAlunoComStatusDaMateria(
+            @Param("professorId") Long professorId,
+            @Param("serie") Long serie,
+            @Param("alunoId") Long alunoId
+    );
 }

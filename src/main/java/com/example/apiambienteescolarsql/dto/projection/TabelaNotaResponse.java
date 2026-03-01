@@ -1,4 +1,4 @@
-package com.example.apiambienteescolarsql.dto;
+package com.example.apiambienteescolarsql.dto.projection;
 
 public interface TabelaNotaResponse {
     Double getNota1();

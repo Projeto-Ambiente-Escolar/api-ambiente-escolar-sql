@@ -2,10 +2,11 @@ package com.example.apiambienteescolarsql.service;
 
 import com.example.apiambienteescolarsql.dto.*;
 import com.example.apiambienteescolarsql.dto.NotasRequest;
+import com.example.apiambienteescolarsql.dto.projection.TabelaNotaResponse;
 import com.example.apiambienteescolarsql.exception.DatabaseInsertException;
 import com.example.apiambienteescolarsql.model.Notas;
 import com.example.apiambienteescolarsql.repository.NotasRepository;
-import com.example.apiambienteescolarsql.repository.RankingAlunoProjection;
+import com.example.apiambienteescolarsql.dto.projection.RankingAlunoProjection;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;

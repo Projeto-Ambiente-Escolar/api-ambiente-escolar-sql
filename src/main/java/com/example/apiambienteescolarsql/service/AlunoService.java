@@ -1,6 +1,7 @@
 package com.example.apiambienteescolarsql.service;
 
 import com.example.apiambienteescolarsql.dto.*;
+import com.example.apiambienteescolarsql.dto.projection.MateriaStatusProjection;
 import com.example.apiambienteescolarsql.exception.DatabaseInsertException;
 import com.example.apiambienteescolarsql.exception.DuplicateException;
 import com.example.apiambienteescolarsql.model.Aluno;
@@ -23,9 +24,9 @@ public class AlunoService {
 
     //get by id do aluno
     public AlunoResponse findById(Long id) {
-        Aluno produto = alunoRepository.findById(id)
+        Aluno aluno = alunoRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Aluno com ID " + id + " não encontrado."));
-        return objectMapper.convertValue(produto, AlunoResponse.class);
+        return objectMapper.convertValue(aluno, AlunoResponse.class);
     }
 
     // get by email e senha
@@ -42,6 +43,14 @@ public class AlunoService {
                 .stream()
                 .map(aluno -> objectMapper.convertValue(aluno, AlunoResponse.class))
                 .toList();
+    }
+
+    public List<MateriaStatusProjection> listarAlunosComStatusDaMateria(Long professorId, Long serie) {
+        return alunoRepository.buscarAlunosComStatusDaMateria(professorId, serie);
+    }
+
+    public MateriaStatusProjection listarAlunoComStatusDaMateria(Long professorId, Long serie, Long alunoId) {
+        return alunoRepository.buscarAlunoComStatusDaMateria(professorId, serie, alunoId);
     }
 
     //get by status

@@ -1,6 +1,7 @@
 package com.example.apiambienteescolarsql.repository;
 
-import com.example.apiambienteescolarsql.dto.TabelaNotaResponse;
+import com.example.apiambienteescolarsql.dto.projection.RankingAlunoProjection;
+import com.example.apiambienteescolarsql.dto.projection.TabelaNotaResponse;
 import com.example.apiambienteescolarsql.model.Notas;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

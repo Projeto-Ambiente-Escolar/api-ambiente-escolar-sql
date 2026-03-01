@@ -1,4 +1,4 @@
-package com.example.apiambienteescolarsql.repository;
+package com.example.apiambienteescolarsql.dto.projection;
 
 public interface RankingAlunoProjection {
     String getCFoto();
