@@ -17,4 +17,6 @@ public class NotasResponse {
     private Long nota2;
 
     private Long media;
+
+    private String observacao;
 }

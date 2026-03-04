@@ -33,26 +33,26 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
     List<Aluno> findAlunosSemNota(@Param("idProfessor") Long idProfessor, @Param("idTurma") Long idTurma);
 
     @Query(value = """
-    SELECT 
-        a.nCdAluno      AS nCdAluno,
-        a.cNmAluno      AS cNmAluno,
-        a.cFoto         AS cFoto,
-        a.cMatricula    AS cMatricula,
-        CONCAT(t.iSerie, ' ', t.cNmTurma) AS serie,
-        CASE 
-            WHEN n.nMedia IS NULL THEN 'Em espera'
-            WHEN n.nMedia >= 7 THEN 'Aprovado'
-            ELSE 'Reprovado'
-        END AS status
-    FROM Turma t
-    JOIN Aluno a ON t.nCdTurma = a.nCdTurma
-    JOIN Notas n ON a.nCdAluno = n.nCdAluno
-    WHERE n.nCdProfessor = :professorId
-      AND t.iSerie = :serie
+
+            SELECT a.nCdAluno      AS nCdAluno,
+                   a.cNmAluno      AS cNmAluno,
+                   a.cFoto         AS cFoto,
+                   a.cMatricula    AS cMatricula,
+                   CONCAT(t.iSerie, ' ', t.cNmTurma) AS serie,
+                   CASE
+                     WHEN n.nMedia IS NULL THEN 'Em espera'
+                     WHEN n.nMedia >= 7 THEN 'Aprovado'
+                     ELSE 'Reprovado'
+                   END AS status
+              FROM Aluno a
+                   INNER JOIN Turma t ON t.nCdTurma = a.nCdTurma
+                    LEFT JOIN Notas n ON a.nCdAluno = n.nCdAluno
+                                     AND n.nCdProfessor = :professorId
+             WHERE t.nCdTurma = :turmaId
     """, nativeQuery = true)
     List<MateriaStatusProjection> buscarAlunosComStatusDaMateria(
             @Param("professorId") Long professorId,
-            @Param("serie") Long serie
+            @Param("turmaId") Long turmaId
     );
 
     @Query(value = """

@@ -45,8 +45,8 @@ public class AlunoService {
                 .toList();
     }
 
-    public List<MateriaStatusProjection> listarAlunosComStatusDaMateria(Long professorId, Long serie) {
-        return alunoRepository.buscarAlunosComStatusDaMateria(professorId, serie);
+    public List<MateriaStatusProjection> listarAlunosComStatusDaMateria(Long professorId, Long turmaId) {
+        return alunoRepository.buscarAlunosComStatusDaMateria(professorId, turmaId);
     }
 
     public MateriaStatusProjection listarAlunoComStatusDaMateria(Long professorId, Long serie, Long alunoId) {
