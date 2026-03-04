@@ -81,8 +81,8 @@ public class AlunoController {
     }
 
     @GetMapping("/listarAlunosComStatusDaMateria/{professor}/{serie}")
-    public ResponseEntity<List<MateriaStatusProjection>> listarAlunosComStatusDaMateria (@PathVariable Long professor, @PathVariable Long turma) {
-        List<MateriaStatusProjection> materiaStatusProjections = alunoService.listarAlunosComStatusDaMateria(professor, turma);
+    public ResponseEntity<List<MateriaStatusProjection>> listarAlunosComStatusDaMateria (@PathVariable Long professor, @PathVariable Long serie) {
+        List<MateriaStatusProjection> materiaStatusProjections = alunoService.listarAlunosComStatusDaMateria(professor, serie);
         return new ResponseEntity<>(materiaStatusProjections, HttpStatus.OK);
     }
 
