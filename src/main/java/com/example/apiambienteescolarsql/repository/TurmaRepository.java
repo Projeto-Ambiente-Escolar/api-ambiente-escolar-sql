@@ -3,17 +3,18 @@ package com.example.apiambienteescolarsql.repository;
 import com.example.apiambienteescolarsql.model.Turma;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 public interface TurmaRepository extends JpaRepository<Turma, Long> {
     @Query(
-            value = "SELECT Turma.iSerie\n" +
-                    "     , Turma.cNmTurma\n" +
-                    "\t , ROUND(AVG(Notas.nMedia),2)\n" +
-                    "  FROM Notas \n" +
-                    "       INNER JOIN Aluno ON Aluno.nCdAluno = Notas.nCdAluno \n" +
-                    "\t   INNER JOIN Turma ON Turma.nCdTurma = Aluno.nCdTurma\n" +
-                    " GROUP BY Turma.iSerie, Turma.cNmTurma",
+            value = """
+            SELECT ROUND(AVG(n.nMedia),2)
+            	FROM Notas n
+            	JOIN Aluno a ON n.nCdAluno = a.nCdAluno
+            	JOIN Turma t ON a.nCdTurma = t.nCdTurma
+            WHERE n.nCdProfessor = :idProfessor AND t.nCdTurma = :idTurma
+            """,
             nativeQuery = true
     )
-    Double findMediaTurma();
+    Double findMediaTurma(@Param("idProfessor") Long idProfessor, @Param("idTurma") Long idTurma);
 }

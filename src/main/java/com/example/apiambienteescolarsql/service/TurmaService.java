@@ -18,8 +18,11 @@ public class TurmaService {
         return  turmaRepository.findAll().stream().map(turma -> objectMapper.convertValue(turma, TurmaResponse.class)).toList();
     }
 
-    public Double findMediaTurma() {
-        return turmaRepository.findMediaTurma();
+    public Double findMediaTurma(Long idProfessor, Long idTurma) {
+
+        Double media = turmaRepository.findMediaTurma(idProfessor, idTurma);
+
+        return media != null ? media : 0.0;
     }
 
 }
