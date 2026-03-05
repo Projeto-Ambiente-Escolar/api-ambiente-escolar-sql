@@ -60,8 +60,9 @@ public class NotasService {
         );
     }
 
-    public Double findMedia() {
-        return notasRepository.findMedia();
+    public Double findMedia(Long professorId) {
+        Double media = notasRepository.findMedia(professorId);
+        return media != null ? media : 0.0;
     }
 
     public List<RankingAlunoProjection> findTop3Alunos(Long professorId) {

@@ -32,9 +32,9 @@ public class NotasController {
         return new ResponseEntity<>(responseNotasDTO, HttpStatus.OK);
     }
 
-    @GetMapping("/media")
-    public ResponseEntity<Double> findMedia() {
-        Double media = notasService.findMedia();
+    @GetMapping("/media/{idProfessor}")
+    public ResponseEntity<Double> findMedia(@PathVariable Long idProfessor) {
+        Double media = notasService.findMedia(idProfessor);
         return new ResponseEntity<>(media, HttpStatus.OK);
     }
     @GetMapping("/tabelaNotas/{idAluno}")
