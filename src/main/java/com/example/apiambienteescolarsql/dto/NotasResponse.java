@@ -12,11 +12,11 @@ public class NotasResponse {
 
     private Long professor;
 
-    private Long nota1;
+    private Double nota1;
 
-    private Long nota2;
+    private Double nota2;
 
-    private Long media;
+    private Double media;
 
     private String observacao;
 }

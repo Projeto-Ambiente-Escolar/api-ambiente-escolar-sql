@@ -19,11 +19,11 @@ public class Notas {
     private Long professor;
 
     @Column(name = "nnota1", precision = 5, scale = 2)
-    private Long nota1;
+    private Double nota1;
 
     @Column(name = "nnota2", precision = 5, scale = 2)
-    private Long nota2;
+    private Double nota2;
 
     @Column(name = "nmedia", precision = 5, scale = 2)
-    private Long media;
+    private Double media;
 }

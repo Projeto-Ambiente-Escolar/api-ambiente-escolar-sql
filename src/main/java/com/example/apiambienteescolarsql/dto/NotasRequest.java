@@ -20,11 +20,11 @@ public class NotasRequest {
     private Long professor;
 
     @NotNull
-    private Long nota1;
+    private Double nota1;
 
     @NotNull
-    private Long nota2;
+    private Double nota2;
 
     @NotNull
-    private Long media;
+    private Double media;
 }
