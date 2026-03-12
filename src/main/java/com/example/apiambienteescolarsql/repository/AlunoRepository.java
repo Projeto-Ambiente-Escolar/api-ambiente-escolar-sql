@@ -1,6 +1,7 @@
 package com.example.apiambienteescolarsql.repository;
 
 import com.example.apiambienteescolarsql.dto.projection.MateriaStatusProjection;
+import com.example.apiambienteescolarsql.dto.projection.NotasAlunoProjection;
 import com.example.apiambienteescolarsql.model.Aluno;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -78,5 +79,25 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
             @Param("professorId") Long professorId,
             @Param("serie") Long serie,
             @Param("alunoId") Long alunoId
+    );
+
+    @Query(value = """
+    SELECT 
+        a.cNmAluno AS cNmAluno,
+        a.cMatricula AS cMatricula,
+        t.iSerie AS iSerie,
+        t.cNmTurma AS cNmTurma,
+        n.nNota1 AS nNota1,
+        n.nNota2 AS nNota2,
+        n.nMedia AS nMedia
+    FROM Notas n
+        JOIN Aluno a ON n.nCdAluno = a.nCdAluno
+        JOIN Turma t ON a.nCdTurma = t.nCdTurma
+    WHERE a.nCdAluno = :nCdAluno 
+      AND n.nCdProfessor = :nCdProfessor
+""", nativeQuery = true)
+    NotasAlunoProjection buscarNotasAluno(
+            @Param("nCdAluno") Long nCdAluno,
+            @Param("nCdProfessor") Long nCdProfessor
     );
 }

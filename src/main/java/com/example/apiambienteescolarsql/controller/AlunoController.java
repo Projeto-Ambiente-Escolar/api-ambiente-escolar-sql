@@ -4,6 +4,7 @@ import com.example.apiambienteescolarsql.dto.AlunoRequest;
 import com.example.apiambienteescolarsql.dto.AlunoResponse;
 import com.example.apiambienteescolarsql.dto.LoginRequest;
 import com.example.apiambienteescolarsql.dto.projection.MateriaStatusProjection;
+import com.example.apiambienteescolarsql.dto.projection.NotasAlunoProjection;
 import com.example.apiambienteescolarsql.service.AlunoService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -57,8 +58,13 @@ public class AlunoController {
         return new ResponseEntity<>(responseAlunosDTO, HttpStatus.OK);
     }
 
+    @GetMapping("/buscarNotasAluno/{idAluno}/{idProfessor}")
+    public ResponseEntity<NotasAlunoProjection> listarNotasAluno(Long idAluno, Long idProfessor) {
+        return ResponseEntity.ok(alunoService.buscarNotasAluno(idAluno, idProfessor));
+    }
+
     @GetMapping("/selecionarTodos")
-    public ResponseEntity<List<AlunoResponse>> listarAlunos() {
+    public ResponseEntity<List<AlunoResponse>> listarNotasAluno() {
         return ResponseEntity.ok(alunoService.listarAlunos());
     }
 
