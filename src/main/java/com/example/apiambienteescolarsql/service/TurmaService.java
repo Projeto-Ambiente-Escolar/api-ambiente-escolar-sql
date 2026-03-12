@@ -1,6 +1,7 @@
 package com.example.apiambienteescolarsql.service;
 
 import com.example.apiambienteescolarsql.dto.TurmaResponse;
+import com.example.apiambienteescolarsql.dto.projection.TurmaMediaProjection;
 import com.example.apiambienteescolarsql.repository.TurmaRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -18,11 +19,9 @@ public class TurmaService {
         return  turmaRepository.findAll().stream().map(turma -> objectMapper.convertValue(turma, TurmaResponse.class)).toList();
     }
 
-    public Double findMediaTurma(Long idProfessor, Long idTurma) {
+    public TurmaMediaProjection findMediaTurma(Long idProfessor, Long idTurma) {
 
-        Double media = turmaRepository.findMediaTurma(idProfessor, idTurma);
-
-        return media != null ? media : 0.0;
+        return turmaRepository.findMediaTurma(idProfessor, idTurma);
     }
 
 }

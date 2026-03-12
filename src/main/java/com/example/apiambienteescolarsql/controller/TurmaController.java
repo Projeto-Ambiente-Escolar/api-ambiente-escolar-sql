@@ -1,6 +1,7 @@
 package com.example.apiambienteescolarsql.controller;
 
 import com.example.apiambienteescolarsql.dto.TurmaResponse;
+import com.example.apiambienteescolarsql.dto.projection.TurmaMediaProjection;
 import com.example.apiambienteescolarsql.service.TurmaService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,8 +24,8 @@ public class TurmaController {
     private ResponseEntity<List<TurmaResponse>> findAll(){return ResponseEntity.ok(turmaService.findAll());}
 
     @GetMapping("/media/{professorId}/{turmaId}")
-    public ResponseEntity<Double> findMedia(@PathVariable Long professorId, @PathVariable Long turmaId) {
-        Double media = turmaService.findMediaTurma(professorId, turmaId);
+    public ResponseEntity<TurmaMediaProjection> findMedia(@PathVariable Long professorId, @PathVariable Long turmaId) {
+        TurmaMediaProjection media = turmaService.findMediaTurma(professorId, turmaId);
         return new ResponseEntity<>(media, HttpStatus.OK);
     }
 }
