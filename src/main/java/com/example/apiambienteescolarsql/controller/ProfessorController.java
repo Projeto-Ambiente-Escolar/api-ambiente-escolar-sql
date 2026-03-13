@@ -1,5 +1,6 @@
 package com.example.apiambienteescolarsql.controller;
 
+import com.example.apiambienteescolarsql.dto.ProfessorRequest;
 import com.example.apiambienteescolarsql.dto.ProfessorResponse;
 import com.example.apiambienteescolarsql.dto.LoginRequest;
 import com.example.apiambienteescolarsql.service.ProfessorService;
@@ -33,5 +34,9 @@ public class ProfessorController {
         LoginRequest requestProfessorDTO = new LoginRequest(loginRequest.getEmail(), loginRequest.getSenha());
         ProfessorResponse responseProfessorDTO = professorService.findByEmailAndSenha(requestProfessorDTO);
         return new ResponseEntity<>(responseProfessorDTO, HttpStatus.OK);
+    }
+    @PostMapping("/criar")
+    public ResponseEntity<ProfessorResponse> criarProfessor(@RequestBody ProfessorRequest professorRequest) {
+        return  ResponseEntity.ok(professorService.criarProfessor(professorRequest));
     }
 }
