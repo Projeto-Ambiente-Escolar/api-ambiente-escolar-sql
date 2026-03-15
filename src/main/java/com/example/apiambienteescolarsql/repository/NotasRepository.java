@@ -17,7 +17,8 @@ public interface NotasRepository extends JpaRepository<Notas, Long> {
 
     @Query(
             value = """
-            SELECT ROUND(AVG(a.nMedia), 2) FROM notas a
+            SELECT ROUND(CAST(AVG(a.nMedia) AS numeric), 2)
+            FROM notas a
             WHERE a.nCdProfessor = :professor
             """,
             nativeQuery = true
